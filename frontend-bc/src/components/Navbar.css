@@ -1,0 +1,21 @@
+/* body {
+  background-color: rgba(39, 109, 201);
+} */
+/* html {
+  background-color: #c4dcfb;
+} */
+
+.navbar-h1 {
+  box-shadow: 0 5px 15px 0 #266dc9a0;
+  border-radius: 17px;
+  max-width: 400px;
+  margin: 30px auto;
+  height: 70px;
+  /* padding-top: 30px; */
+  /* align-self: center; */
+  text-align: center;
+  /* justify-content: center; */
+  font-size: 50px;
+  color: #276dc9;
+  background-color: #d2e3f8;
+}

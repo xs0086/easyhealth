@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+# APPLICATION ID = 53
+# APPLICATION ACCOUNT = "KRI4UNYE3S6H4OC3T3I2JPG4475D7AJNXGQJKWWBEBJW7KJSBMWTY3R5MM"
+# CHALLENGER ACCOUNT = "IAEP3WXYZTAG6CMEJNTFNIQXDK67PUR5DKGLBDOWTGBLZNEA5OGPBMPEF4"
+# CHALLENGER HASH = "NDkzYTE1ZTdiZGE4OGIwNzI3MjA3MWNiY2ZkM2NiMDU5MjBiOTk5ODcyYjZmM2NmYTZlNGQxNjcxMmRiZjQzNA=="
+# CHALLENGER HAND ="scissors"
+# OPPONENT ACCOUNT = "P3PLNEUIRGEZRBHLNLLOIIHAMOFFTN365JJ7CDPCMQKK4BIPB7U7WFYYJU"
+# OPPONENT HAND = "rock"
+# WAGER = 10000
+
+# ONE=J34OXMKGZQ4ILXHMFO4Z7DJ34JCIORHDH6XXFF437HWY7BGQSRSA72NQLY
+
+# TWO=K6T7US5TSEKHYIKHU7JPQF6MQZXX5ZHVVJRIXLUAEVOJX2P3PSW3VHYJAI
+
+goal app call \
+    --app-id 1 \
+    -f J34OXMKGZQ4ILXHMFO4Z7DJ34JCIORHDH6XXFF437HWY7BGQSRSA72NQLY \
+    --app-account K6T7US5TSEKHYIKHU7JPQF6MQZXX5ZHVVJRIXLUAEVOJX2P3PSW3VHYJAI \
+    --app-arg "str:start" \
+    --app-arg "b64:L34upX89v0DwCj2SsUl3iDHNI/OZsdze3lxJVCG2mMA=" \
+    -o play-start.tx
+
+goal clerk send \
+    -a 100000 \
+    -t WCS6TVPJRBSARHLN2326LRU5BYVJZUKI2VJ53CAWKYYHDE455ZGKANWMGM \
+    -f J34OXMKGZQ4ILXHMFO4Z7DJ34JCIORHDH6XXFF437HWY7BGQSRSA72NQLY \
+    -o play-wager.tx
+
+cat play-start.tx play-wager.tx > play-combined.tx
+goal clerk group -i play-combined.tx -o play-grouped.tx
+goal clerk split -i play-grouped.tx -o play-split.tx
+
+goal clerk sign -i play-split-0.tx -o play-signed-0.tx
+goal clerk sign -i play-split-1.tx -o play-signed-1.tx
+
+cat play-signed-0.tx play-signed-1.tx > play-signed-final.tx
+
+goal clerk rawsend -f play-signed-final.tx

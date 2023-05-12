@@ -1,0 +1,29 @@
+.home-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style-type: none;
+  gap: 50px;
+  margin-top: 60px;
+  flex-wrap: wrap;
+}
+
+.btn-home {
+  width: 150px;
+  height: 80px;
+  background-color: #276dc9;
+  border-radius: 18px;
+  border: 0;
+  box-shadow: 0 5px 15px 0 #266dc9a0;
+  cursor: pointer;
+  color: #d2e3f8;
+  font-size: 25px;
+  padding: 0.7rem 1rem;
+}
+
+.btn-home:hover {
+  background-color: #276dc9c0;
+  color: #0d1c30;
+  transform: scale(1.2);
+  transition-duration: 0.5s;
+}
